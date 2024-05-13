@@ -1,4 +1,6 @@
-﻿$input_dir = Join-Path $PWD "unidic"
+﻿$lucene_cli = "path to lucene-cli.exe"
+
+$input_dir = Join-Path $PWD "unidic"
 $output_dir = Join-Path $PWD "kuromoji-data"
 
 $unk_path = Join-Path $input_dir "unk.def"
@@ -28,7 +30,6 @@ $result | %{ $_+"`n" } |
     Set-Content -Encoding Byte -Path $unk_path
 
 # Invoke build command
-$lucene_cli = "path to lucene-cli.exe"
 $command_str = "$($lucene_cli) analysis kuromoji-build-dictionary UNIDIC $($input_dir) $($output_dir) -e UTF-8 --normalize"
 
 Invoke-Expression $command_str
